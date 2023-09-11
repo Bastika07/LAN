@@ -266,8 +266,9 @@ def main():
             tournament.list_matches(round_number, is_winner_bracket)
         elif command == "2":
             match_id = int(input("Enter the ID of the match for result: "))
-            score_a = int(input("Enter score for {team_a_name}Team A: "))
-            score_b = int(input("Enter score for {team_b_name}Team B: "))
+            team_a_name, team_b_name = tournament.db.get_team_names_for_match(match_id)
+            score_a = int(input(f"Enter score for {team_a_name}: "))
+            score_b = int(input(f"Enter score for {team_b_name}: "))
             tournament.update_result(match_id, score_a, score_b)
         elif command == "3":
             tournament.export_results_to_html()
